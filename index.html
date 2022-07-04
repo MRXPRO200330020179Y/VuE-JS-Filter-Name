@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <title>VuE-JS-Filter-Name</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="app">
+
+            <!-- Vue start -->
+
+            <input type="text" v-model="serchName">
+
+            <!-- <button @click="filtere">submit</button> -->
+
+            <ul>
+                <li v-for="name of filteredNames">{{name}}</li>
+            </ul>
+            
+            <!-- Vue end -->
+
+        </div>
+    </div>
+
+    <style>
+        .wrapper{
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input{
+            width: 100%;
+            border:none;
+            outline: none;
+            background-color: rgb(216, 216, 216);
+            border-radius: 30px;
+            padding: 20px;
+            font-size: 20px;
+        }
+
+        ul{
+            list-style: none;
+            display: flex;
+            align-items:flex-start;
+            justify-content: center;
+            grid-gap: 30px;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+
+        ul li{
+            font-size: 20px;
+            line-height: 30px;
+        }
+    </style>
+
+    <script>
+        const App = {
+            data(){
+               return{
+                serchName:'',
+                names:['Vlad', 'Max', 'Elena', 'Igor']
+               }
+            },
+
+            computed:{
+                filteredNames(){
+                    return this.names.filter(name => {
+                        return name.toLowerCase().indexOf(this.serchName.toLowerCase()) !== -1
+                    })
+                }
+            },
+
+            //  при клик
+
+            // methods:{
+            //     filtere(){
+            //         return this.names = this.filteredNames
+            //     }
+            // }
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>
